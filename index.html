@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dynamic Form</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+        function confirmSubmit() {
+            var result = confirm("Are you sure you want to submit the form?");
+            if (result) {
+                // The user clicked "OK," proceed with form submission
+                return true;
+            } else {
+                // The user clicked "Cancel," stop the form submission
+                return false;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form action="https://formspree.io/f/xnqyrvde" method="POST" id="dynamicForm" onsubmit="return confirmSubmit()">
+        <label for="studentName">Student Name</label>
+        <input type="text" id="studentName" name="studentName">
+
+        <label for="tutorName">Tutor Name</label>
+        <input type="text" id="tutorName" name="tutorName">
+
+        <h2>Tutoring Sessions</h2>
+
+        <div id="entriesContainer">
+            <div class="entry">
+                <label>Date</label>
+                <input type="date" name="dates[]">
+
+                <div class="hours-container">
+                    <label>
+                        <span>Prep Hours</span>
+                        <input type="number" name="prepHours[]" min="0" step="0.25" value="0">
+                    </label>
+
+                    <label>
+                        <span>Travel Hours</span>
+                        <input type="number" name="travelHours[]" min="0" step="0.25" value="0">
+                    </label>
+
+                    <label>
+                        <span>Tutoring Hours</span>
+                        <input type="number" name="tutoringHours[]" min="0" step="0.25" value="0">
+                    </label>
+                </div>
+
+                <label>Lesson Details</label>
+                <textarea name="lessonDetails[]"></textarea>
+
+                <button class="removeBtn" type="button">Remove Tutoring Session</button>
+            </div>
+        </div>
+
+        <button id="addBtn" type="button">Add Tutoring Session</button>
+
+        <label>What are your observations concerning your student’s strengths and weaknesses?</label>
+        <textarea name="observations"></textarea>
+
+        <label>Has your student improved his/her oral communication and/or writing skills?</label>
+        <textarea name="skills"></textarea>
+
+        <label>Have you encountered any tutoring problems? Please describe the problems and the way you handled them. Would you like to receive assistance in resolving this problem? Please let us know; we want to help you!</label>
+        <textarea name="problems"></textarea>
+
+        <label>Describe any supplemental materials and/or techniques you used that were successful.</label>
+        <textarea name="supplemental"></textarea>
+
+        <label>List any in-service trainings you would like to see offered: </label>
+        <textarea name="training"></textarea>
+
+        <h2>This Month We:</h2>
+        <div class="this_month">
+            <label>Established these new goals:</label>
+            <textarea id="this_month_area" name="month_goals"></textarea>
+            <label>Made progress in:</label>
+            <textarea id="this_month_area" name="month_progress"></textarea>
+            <label>Completed these books:</label>
+            <textarea id="this_month_area" name="month_books"></textarea>
+        </div>
+
+        <h2>This Month My Student:</h2>
+        <div class="this_month_student">
+            <div>
+                <div>
+                    <input type="checkbox" name="new_job">
+                    <label for="new_job">Got a new job (where?)</label>
+                </div>
+                <input type="text" id="tutorName" name="tutorName">
+            </div>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('addBtn').addEventListener('click', function () {
+            let container = document.getElementById('entriesContainer');
+            let newEntry = document.createElement('div');
+            newEntry.className = 'entry';
+            newEntry.innerHTML = `
+            <label>Date</label>
+            <input type="date" name="dates[]">
+
+            <div class="hours-container">
+                <label>
+                    <span>Prep Hours</span>
+                    <input type="number" name="prepHours[]" min="0" step="0.25" value="0">
+                </label>
+
+                <label>
+                    <span>Travel Hours</span>
+                    <input type="number" name="travelHours[]" min="0" step="0.25" value="0">
+                </label>
+
+                <label>
+                    <span>Tutoring Hours</span>
+                    <input type="number" name="tutoringHours[]" min="0" step="0.25" value="0">
+                </label>
+            </div>
+
+            <label>Lesson Details</label>
+            <textarea name="lessonDetails[]"></textarea>
+
+            <button class="removeBtn" type="button">Remove Tutoring Session</button>
+        `;
+            container.appendChild(newEntry);
+        });
+
+        document.getElementById('dynamicForm').addEventListener('click', function (e) {
+            if (e.target && e.target.matches('.removeBtn')) {
+                if (!confirm('Are you sure you want to remove this entry?')) return;
+                e.target.parentNode.remove();
+            }
+        });
+
+        document.getElementById('form').addEventListener('submit', function (e) {
+            // Add these lines
+            if (!confirm('Are you sure you want to submit this form?')) {
+                e.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>

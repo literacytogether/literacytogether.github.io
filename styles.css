@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+button[type="button"] {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="button"]:hover {
+    background-color: #c82333;
+}
+
+.entry {
+    border: 1px solid #c5c5c5;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 40px;
+    background-color: #f0f0f0;
+    /* light gray */
+}
+
+#addBtn {
+    background-color: #28a745;
+}
+
+#addBtn:hover {
+    background-color: #218838;
+}
+
+.hours-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hours-container>label {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.hours-container>label:last-child {
+    margin-right: 0;
+}
+
+textarea {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    height: 200px;
+    /* default height */
+    width: 100%;
+    max-height: 100%;
+    /* limit height */
+    max-width: 100%;
+    min-width: 100%;
+    font-size: large;
+}
+
+.hours-container>label>span {
+    display: block;
+    margin-bottom: 5px;
+    /* adjust as needed */
+}
+
+.this_month {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 10px;
+}
+
+#this_month_area {
+    height: 100px;
+}
+
+.this_month>label {
+    text-align: right;
+}
+
+.this_month_student {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.this_month_student>div>div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.this_month_student>div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.this_month_student label {
+    white-space: nowrap;
+}
+
+input[type='checkbox'] {
+    transform: scale(1.5); /* Increase the size by 50% */
+  }
