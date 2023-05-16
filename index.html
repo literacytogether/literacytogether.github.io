@@ -2,59 +2,21 @@
 <html>
 
 <head>
-    <title>Dynamic Form</title>
+    <title>Attendance Form</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script>
-        function confirmSubmit() {
-            var result = confirm("Are you sure you want to submit the form?");
-            if (result) {
-                // The user clicked "OK," proceed with form submission
-                return true;
-            } else {
-                // The user clicked "Cancel," stop the form submission
-                return false;
-            }
-        }
-    </script>
 </head>
 
 <body>
     <form action="https://formspree.io/f/xnqyrvde" method="POST" id="dynamicForm" onsubmit="return confirmSubmit()">
-        <label for="studentName">Student Name</label>
-        <input type="text" id="studentName" name="studentName">
+        <label for="studentName">Student Name (First and Last)</label>
+        <input type="text" id="studentName" name="studentName" required>
 
-        <label for="tutorName">Tutor Name</label>
-        <input type="text" id="tutorName" name="tutorName">
+        <label for="tutorName">Tutor Name (First and Last)</label>
+        <input type="text" id="tutorName" name="tutorName" required>
 
         <h2>Tutoring Sessions</h2>
 
         <div id="entriesContainer">
-            <div class="entry">
-                <label>Date</label>
-                <input type="date" name="dates[]">
-
-                <div class="hours-container">
-                    <label>
-                        <span>Prep Hours</span>
-                        <input type="number" name="prepHours[]" min="0" step="0.25" value="0">
-                    </label>
-
-                    <label>
-                        <span>Travel Hours</span>
-                        <input type="number" name="travelHours[]" min="0" step="0.25" value="0">
-                    </label>
-
-                    <label>
-                        <span>Tutoring Hours</span>
-                        <input type="number" name="tutoringHours[]" min="0" step="0.25" value="0">
-                    </label>
-                </div>
-
-                <label>Lesson Details</label>
-                <textarea name="lessonDetails[]"></textarea>
-
-                <button class="removeBtn" type="button">Remove Tutoring Session</button>
-            </div>
         </div>
 
         <button id="addBtn" type="button">Add Tutoring Session</button>
@@ -91,60 +53,47 @@
                     <input type="checkbox" name="new_job">
                     <label for="new_job">Got a new job (where?)</label>
                 </div>
-                <input type="text" id="tutorName" name="tutorName">
+                <input type="text" id="new_job_info" name="new_job_info">
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" name="promotion">
+                    <label for="promotion">Got a promotion with current employer</label>
+                </div>
+                <input type="text" id="promotion_info" name="promotion_info">
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" name="education_involvement">
+                    <label for="education_involvement">Got involved with his/her children's education (ex. met with teacher, helped with homework, etc.)</label>
+                </div>
+                <input type="text" id="education_involvement_info" name="education_involvement_info">
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" name="voting">
+                    <label for="voting">Voted or registered to vote</label>
+                </div>
+                <input type="text" id="voting_info" name="voting_info">
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" name="community_event">
+                    <label for="community_event">Participated in community activity</label>
+                </div>
+                <input type="text" id="community_event_info" name="community_event_info">
+            </div>
+            <div>
+                <div>
+                    <input type="checkbox" name="training_program">
+                    <label for="training_program">Enrolled in an educational or training program (please specify)</label>
+                </div>
+                <input type="text" id="training_program_info" name="training_program_info">
             </div>
         </div>
-
-        <input type="submit" value="Submit">
+        <br>
+        <br>
+        <input type="submit" value="Submit Attendance">
     </form>
-
-    <script>
-        document.getElementById('addBtn').addEventListener('click', function () {
-            let container = document.getElementById('entriesContainer');
-            let newEntry = document.createElement('div');
-            newEntry.className = 'entry';
-            newEntry.innerHTML = `
-            <label>Date</label>
-            <input type="date" name="dates[]">
-
-            <div class="hours-container">
-                <label>
-                    <span>Prep Hours</span>
-                    <input type="number" name="prepHours[]" min="0" step="0.25" value="0">
-                </label>
-
-                <label>
-                    <span>Travel Hours</span>
-                    <input type="number" name="travelHours[]" min="0" step="0.25" value="0">
-                </label>
-
-                <label>
-                    <span>Tutoring Hours</span>
-                    <input type="number" name="tutoringHours[]" min="0" step="0.25" value="0">
-                </label>
-            </div>
-
-            <label>Lesson Details</label>
-            <textarea name="lessonDetails[]"></textarea>
-
-            <button class="removeBtn" type="button">Remove Tutoring Session</button>
-        `;
-            container.appendChild(newEntry);
-        });
-
-        document.getElementById('dynamicForm').addEventListener('click', function (e) {
-            if (e.target && e.target.matches('.removeBtn')) {
-                if (!confirm('Are you sure you want to remove this entry?')) return;
-                e.target.parentNode.remove();
-            }
-        });
-
-        document.getElementById('form').addEventListener('submit', function (e) {
-            // Add these lines
-            if (!confirm('Are you sure you want to submit this form?')) {
-                e.preventDefault();
-                return;
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>

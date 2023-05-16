@@ -125,26 +125,38 @@ textarea {
 .this_month_student {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 20px;
 }
 
 .this_month_student>div>div {
     display: flex;
-    align-items: baseline;
-    gap: 8px;
+    align-items: center;
+    gap: 12px;
 }
 
 .this_month_student>div {
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
+    align-items: center;
     gap: 14px;
+    max-width: 100%;
 }
 
 .this_month_student label {
-    white-space: nowrap;
+    width: 250px;
+    margin-top: 8px;
 }
 
 input[type='checkbox'] {
-    transform: scale(1.5); /* Increase the size by 50% */
-  }
+    transform: scale(1.5);
+    /* Increase the size by 50% */
+}
+
+input[type='submit'] {
+    font-size: large;
+}
+
+label.required::after {
+content: " *";
+color: red;
+}
