@@ -21,6 +21,7 @@ label {
 input[type="text"],
 input[type="date"],
 input[type="number"],
+select,
 textarea {
     width: 100%;
     padding: 10px;
@@ -157,6 +158,6 @@ input[type='submit'] {
 }
 
 label.required::after {
-content: " *";
-color: red;
+    content: " *";
+    color: red;
 }

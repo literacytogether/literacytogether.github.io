@@ -14,6 +14,19 @@
         <label for="tutorName">Tutor Name (First and Last)</label>
         <input type="text" id="tutorName" name="tutorName" required>
 
+        <label for="site_location">Site Location</label>
+        <select name="site_location" id="site_location" required onchange="toggleTextInput(this)">
+            <option value="virtual">Virtual</option>
+            <option value="literacy_building">Literacy Together Building</option>
+            <option value="student_home">Student's Home</option>
+            <option value="other">Other</option>
+        </select>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 20px; align-items: center;">
+            <label for="site_location_other" style="display:none; vertical-align: middle; margin: 0;">Please specify other site location:</label>
+            <input type="text" id="site_location_other" name="site_location_other" style="display: none">
+        </div>
+
         <h2>Tutoring Sessions</h2>
 
         <div id="entriesContainer">

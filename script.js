@@ -71,6 +71,22 @@ document.querySelector('form').addEventListener('submit', function (e) {
     }
 });
 
+function toggleTextInput(dropdown) {
+    let textInput = document.getElementById('site_location_other');
+    let textInputLabel = document.querySelector('label[for="site_location_other"]');
+    
+    if (dropdown.value === 'other') {
+      textInput.style.display = 'block';
+      textInputLabel.style.display = 'block';
+      textInput.setAttribute('required', true);
+    } else {
+      textInput.style.display = 'none';
+      textInputLabel.style.display = 'none';
+      textInput.removeAttribute('required');
+    }
+    updateAsterisks();
+  }
+
 const checkboxes = document.querySelectorAll("input[type='checkbox']");
 console.log(checkboxes);
 
