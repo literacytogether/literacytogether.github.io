@@ -1,3 +1,4 @@
+// script
 tutorSessionSection = `
     <label for="dates[]">Date</label>
     <input type="date" name="dates[]" required>
