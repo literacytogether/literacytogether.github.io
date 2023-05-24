@@ -88,7 +88,7 @@ function toggleTextInput(dropdown) {
     updateAsterisks();
   }
 
-const checkboxes = document.querySelectorAll("input[type='checkbox']");
+const checkboxes = document.querySelectorAll(".this_month_checkbox");
 console.log(checkboxes);
 
 checkboxes.forEach(function (checkbox) {

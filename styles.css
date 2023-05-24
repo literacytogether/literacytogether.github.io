@@ -161,3 +161,14 @@ label.required::after {
     content: " *";
     color: red;
 }
+ 
+#days {
+    display: flex;
+    justify-content: space-between;
+}
+
+.day_label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

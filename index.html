@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <form action="https://formspree.io/f/mbjeejkb" method="POST" id="dynamicForm" onsubmit="return confirmSubmit()">
+    <form action="http://localhost:5001/process_form" method="POST" id="dynamicForm" onsubmit="return confirmSubmit()">
         <label for="studentName">Student Name (First and Last)</label>
         <input type="text" id="studentName" name="studentName" required>
 
@@ -16,16 +16,36 @@
 
         <label for="site_location">Site Location</label>
         <select name="site_location" id="site_location" required onchange="toggleTextInput(this)">
-            <option value="virtual">Virtual</option>
-            <option value="literacy_building">Literacy Together Building</option>
-            <option value="student_home">Student's Home</option>
+            <option value="Virtual">Virtual</option>
+            <option value="Literacy Building">Literacy Together Building</option>
+            <option value="Student Home">Student's Home</option>
             <option value="other">Other</option>
         </select>
+
+
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 20px; align-items: center;">
             <label for="site_location_other" style="display:none; vertical-align: middle; margin: 0;">Please specify other site location:</label>
             <input type="text" id="site_location_other" name="site_location_other" style="display: none">
         </div>
+        <label>Tutoring Days</label>
+        <div id="days">
+            <label class="day_label"><input type="checkbox" name="monday" value="Monday"> Monday</label>
+            <label class="day_label"><input type="checkbox" name="tuesday" value="Tuesday"> Tuesday</label>
+            <label class="day_label"><input type="checkbox" name="wednesday" value="Wednesday"> Wednesday</label>
+            <label class="day_label"><input type="checkbox" name="thursday" value="Thursday"> Thursday</label>
+            <label class="day_label"><input type="checkbox" name="friday" value="Friday"> Friday</label>
+            <label class="day_label"><input type="checkbox" name="saturday" value="Saturday"> Saturday</label>
+            <label class="day_label"><input type="checkbox" name="sunday" value="Sunday"> Sunday</label>
+        </div>
+
+        <div style="display: flex; justify-content: start; gap: 10px">
+        <label>Start Time: <input type="time" id="start_time" name="start_time" required></label>
+        <label>End Time: <input type="time" name="end_time" required></label>
+        </div>
+
+        <label for="booksUsed">Books Used</label>
+        <input type="text" name="books_used" required>
 
         <h2>Tutoring Sessions</h2>
 
@@ -63,42 +83,42 @@
         <div class="this_month_student">
             <div>
                 <div>
-                    <input type="checkbox" name="new_job">
+                    <input class="this_month_checkbox" type="checkbox" name="new_job">
                     <label for="new_job">Got a new job (where?)</label>
                 </div>
                 <input type="text" id="new_job_info" name="new_job_info">
             </div>
             <div>
                 <div>
-                    <input type="checkbox" name="promotion">
+                    <input class="this_month_checkbox" type="checkbox" name="promotion">
                     <label for="promotion">Got a promotion with current employer</label>
                 </div>
                 <input type="text" id="promotion_info" name="promotion_info">
             </div>
             <div>
                 <div>
-                    <input type="checkbox" name="education_involvement">
+                    <input class="this_month_checkbox" type="checkbox" name="education_involvement">
                     <label for="education_involvement">Got involved with his/her children's education (ex. met with teacher, helped with homework, etc.)</label>
                 </div>
                 <input type="text" id="education_involvement_info" name="education_involvement_info">
             </div>
             <div>
                 <div>
-                    <input type="checkbox" name="voting">
+                    <input class="this_month_checkbox" type="checkbox" name="voting">
                     <label for="voting">Voted or registered to vote</label>
                 </div>
                 <input type="text" id="voting_info" name="voting_info">
             </div>
             <div>
                 <div>
-                    <input type="checkbox" name="community_event">
+                    <input class="this_month_checkbox" type="checkbox" name="community_event">
                     <label for="community_event">Participated in community activity</label>
                 </div>
                 <input type="text" id="community_event_info" name="community_event_info">
             </div>
             <div>
                 <div>
-                    <input type="checkbox" name="training_program">
+                    <input class="this_month_checkbox" type="checkbox" name="training_program">
                     <label for="training_program">Enrolled in an educational or training program (please specify)</label>
                 </div>
                 <input type="text" id="training_program_info" name="training_program_info">
