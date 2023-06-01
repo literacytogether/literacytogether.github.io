@@ -7,7 +7,8 @@
 </head>
 
 <body>
-    <form action="https://literacy-together.herokuapp.com/process_form" method="POST" id="dynamicForm" onsubmit="return confirmSubmit()">
+    <form action="https://literacy-together.herokuapp.com/process_form" method="POST" id="dynamicForm">
+    <!-- <form action="" method="POST" id="dynamicForm"> -->
       <div style="width: 50%; margin: auto"><img style="width: 100%;" src="./logo.jpeg" alt="Literacy Together Logo" /></div>
       <br>
       <p style="font-size: 1.5em; font-style: italic;">Please submit by the first of each month</p>
@@ -35,7 +36,7 @@
             <input type="text" id="site_location_other" name="site_location_other" style="display: none">
         </div>
 
-        <label>Tutoring Days</label>
+        <label class="required">Tutoring Days</label>
         <div id="days">
             <label class="day_label"><input type="checkbox" name="monday" value="Monday">Monday</label>
             <label class="day_label"><input type="checkbox" name="tuesday" value="Tuesday">Tuesday</label>
@@ -47,8 +48,8 @@
         </div>
 
         <div style="display: flex; justify-content: start; gap: 10px">
-            <label>Start Time: <input type="time" id="start_time" name="start_time" required></label>
-            <label>End Time: <input type="time" name="end_time" required></label>
+            <label class="required">Start Time: <input type="time" id="start_time" name="start_time" required></label>
+            <label class="required">End Time: <input type="time" name="end_time" required></label>
         </div>
 
         <label for="booksUsed">Books Used</label>
@@ -133,7 +134,7 @@
         </div>
         <br>
         <br>
-        <input type="submit" value="Submit Attendance">
+        <input type="submit" id="submitButton" value="Submit Attendance">
     </form>
     <script src="script.js"></script>
 </body>
