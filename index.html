@@ -8,13 +8,19 @@
 
 <body>
     <form action="https://literacy-together.herokuapp.com/process_form" method="POST" id="dynamicForm">
-    <!-- <form action="" method="POST" id="dynamicForm"> -->
-      <div style="width: 50%; margin: auto"><img style="width: 100%;" src="./logo.jpeg" alt="Literacy Together Logo" /></div>
-      <br>
-      <p style="font-size: 1.5em; font-style: italic;">Please submit by the first of each month</p>
-      <br>
-      <div>
-      </div>
+        <!-- <form action="" method="POST" id="dynamicForm"> -->
+        <div style="width: 50%; margin: auto"><img style="width: 100%;" src="./logo.jpeg"
+                alt="Literacy Together Logo" /></div>
+        <br>
+       <div id="dataBtns" style="display: flex; flex-wrap: wrap; gap: 5px">
+         <button id="saveBtn" type="button">Save Form Progress</button>
+         <button id="loadBtn" type="button">Load Form Progress</button>
+         <button id="clearBtn" type="button">Clear Saved Form Progress</button>
+       </div> 
+        <p style="font-size: 1.5em; font-style: italic;">Please submit by the first of each month</p>
+        <br>
+        <div>
+        </div>
         <label for="studentName">Student Name (First and Last)</label>
         <input type="text" id="studentName" name="studentName" required>
 
@@ -32,7 +38,8 @@
 
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 20px; align-items: center;">
-            <label for="site_location_other" style="display:none; vertical-align: middle; margin: 0;">Please specify other site location:</label>
+            <label for="site_location_other" style="display:none; vertical-align: middle; margin: 0;">Please specify
+                other site location:</label>
             <input type="text" id="site_location_other" name="site_location_other" style="display: none">
         </div>
 
@@ -62,13 +69,15 @@
 
         <button id="addBtn" type="button">Add Tutoring Session</button>
 
-        <label>What are your observations concerning your student’s strengths and weaknesses?</label>
+        <label>What are your observations concerning your student&apos;s strengths and weaknesses?</label>
         <textarea name="observations"></textarea>
 
         <label>Has your student improved his/her oral communication and/or writing skills?</label>
         <textarea name="skills"></textarea>
 
-        <label>Have you encountered any tutoring problems? Please describe the problems and the way you handled them. Would you like to receive assistance in resolving this problem? Please let us know; we want to help you!</label>
+        <label>Have you encountered any tutoring problems? Please describe the problems and the way you handled them.
+            Would you like to receive assistance in resolving this problem? Please let us know; we want to help
+            you!</label>
         <textarea name="problems"></textarea>
 
         <label>Describe any supplemental materials and/or techniques you used that were successful.</label>
@@ -106,7 +115,8 @@
             <div>
                 <div>
                     <input class="this_month_checkbox" type="checkbox" name="education_involvement">
-                    <label for="education_involvement">Got involved with his/her children's education (ex. met with teacher, helped with homework, etc.)</label>
+                    <label for="education_involvement">Got involved with his/her children's education (ex. met with
+                        teacher, helped with homework, etc.)</label>
                 </div>
                 <input type="text" id="education_involvement_info" name="education_involvement_info">
             </div>
@@ -127,7 +137,8 @@
             <div>
                 <div>
                     <input class="this_month_checkbox" type="checkbox" name="training_program">
-                    <label for="training_program">Enrolled in an educational or training program (please specify)</label>
+                    <label for="training_program">Enrolled in an educational or training program (please
+                        specify)</label>
                 </div>
                 <input type="text" id="training_program_info" name="training_program_info">
             </div>
@@ -136,5 +147,7 @@
         <br>
         <input type="submit" id="submitButton" value="Submit Attendance">
     </form>
+
+
     <script src="script.js"></script>
 </body>

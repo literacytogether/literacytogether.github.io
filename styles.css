@@ -12,6 +12,11 @@ form {
   margin: 0 auto;
 }
 
+#dataBtns > button {
+  background-color: #007bff;
+  font-size: 1em;
+}
+
 label {
   display: block;
   margin-top: 20px;
@@ -116,6 +121,10 @@ textarea {
 }
 
 @media screen and (max-width: 500px) {
+  body {
+    margin: 0px;
+    padding: 0px;
+  }
   .this_month {
     grid-template-columns: 100px 1fr;
   }

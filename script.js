@@ -34,7 +34,7 @@ container.appendChild(newEntry);
 
 function updateAsterisks() {
   const requiredElements = document.querySelectorAll("#dynamicForm :required");
-  requiredElements.forEach(function (element) {
+  requiredElements.forEach(function(element) {
     const label = element.previousElementSibling;
     if (label) {
       label.classList.add("required");
@@ -42,7 +42,7 @@ function updateAsterisks() {
   });
 }
 
-document.getElementById("addBtn").addEventListener("click", function () {
+document.getElementById("addBtn").addEventListener("click", function() {
   let container = document.getElementById("entriesContainer");
   let newEntry = document.createElement("div");
   newEntry.className = "entry";
@@ -51,14 +51,14 @@ document.getElementById("addBtn").addEventListener("click", function () {
   updateAsterisks();
 });
 
-document.getElementById("dynamicForm").addEventListener("click", function (e) {
+document.getElementById("dynamicForm").addEventListener("click", function(e) {
   if (e.target && e.target.matches(".removeBtn")) {
     if (!confirm("Are you sure you want to remove this entry?")) return;
     e.target.parentNode.remove();
   }
 });
 
-document.getElementById("submitButton").addEventListener("click", function (e) {
+document.getElementById("submitButton").addEventListener("click", function(e) {
   let inputs = document.querySelectorAll("input");
   let unfilled = [];
   let firstUnfilled;
@@ -101,7 +101,7 @@ document.getElementById("submitButton").addEventListener("click", function (e) {
   }
 });
 
-document.querySelector("form").addEventListener("submit", function (e) {
+document.querySelector("form").addEventListener("submit", function(e) {
   const tutorSessions = document.querySelectorAll(".entry");
   if (tutorSessions.length === 0) {
     e.preventDefault();
@@ -136,8 +136,8 @@ function toggleTextInput(dropdown) {
 const checkboxes = document.querySelectorAll(".this_month_checkbox");
 console.log(checkboxes);
 
-checkboxes.forEach(function (checkbox) {
-  checkbox.addEventListener("change", function (event) {
+checkboxes.forEach(function(checkbox) {
+  checkbox.addEventListener("change", function(event) {
     console.log(event.target.checked);
     const nextTextInput = checkbox.parentElement.nextElementSibling;
     console.log(nextTextInput);
@@ -146,5 +146,150 @@ checkboxes.forEach(function (checkbox) {
     }
   });
 });
+
+function getAllFormInputs() {
+    var forms = document.forms;
+    let inputs = {};
+    var formInputs = forms[0].querySelectorAll('input[type=text], input[type=textarea]')
+    for (var j = 0; j < formInputs.length; j++) {
+        var input = formInputs[j];
+        if (input.name) {
+            inputs[input.name] = input.value;
+        } else if (input.id) {
+            inputs[input.id] = input.value;
+        }
+    }
+    return inputs;
+}
+
+function saveTutoringSessions() {
+  var parentDiv = document.querySelector('#entriesContainer')
+  let data = []
+  Array.from(parentDiv.children).forEach(function(child) {
+          if (child.tagName === 'DIV') {
+              var inputs = child.querySelectorAll('input');
+              var obj = {};
+              inputs.forEach(function(input) {
+                  var key = input.name ? input.name : input.id;
+                  if (input.type === 'checkbox') {
+                      obj[key] = input.checked;
+                  } else {
+                      obj[key] = input.value;
+                  }
+              });
+              obj["lessonDetails[]"] = child.querySelector("textarea").value
+              data.push(obj);
+          }
+      });
+  return data
+}
+
+function loadTutoringSessions(savedSessions) {
+  var entries = document.querySelectorAll('div.entry');
+
+  entries.forEach(function(entry) {
+      entry.remove();
+  });
+
+  savedSessions.forEach(element => {
+    let container = document.getElementById("entriesContainer");
+    let newEntry = document.createElement("div");
+    newEntry.className = "entry";
+    newEntry.innerHTML = tutorSessionSection;
+    container.appendChild(newEntry);
+
+    console.log(element)
+
+    let date = newEntry.querySelector('input[type=date]');
+    date.value = element["dates[]"] 
+
+    let prepHours = newEntry.querySelector('[name="prepHours[]"]');
+    prepHours.value = element["prepHours[]"] 
+
+    let travelHours = newEntry.querySelector('[name="travelHours[]"]');
+    travelHours.value = element["travelHours[]"] 
+
+    let tutorHours = newEntry.querySelector('[name="tutoringHours[]"]');
+    tutorHours.value = element["tutoringHours[]"] 
+
+    let moreInfo = newEntry.querySelector('[name="lessonDetails[]"]');
+    moreInfo.value = element["lessonDetails[]"] 
+    updateAsterisks();
+  });
+
+
+}
+
+function saveFormInputs() {
+    var formInputs = document.querySelectorAll('input[type=text], textarea, input[type=checkbox], select, input[type=time]');
+    var inputs = {};
+    for (var i = 0; i < formInputs.length; i++) {
+        var input = formInputs[i];
+        var key = input.name ? input.name : input.id;
+        if (input.type === 'checkbox') {
+            inputs[key] = input.checked;
+        } else {
+            inputs[key] = input.value;
+        }
+    }
+    return inputs;
+}
+
+function loadFormInputs(savedInputs) {
+    var formInputs = document.querySelectorAll('input[type=text], textarea, input[type=checkbox], select, input[type=time]');
+    for (var i = 0; i < formInputs.length; i++) {
+        var input = formInputs[i];
+        var key = input.name ? input.name : input.id;
+        if (key in savedInputs) {
+            if (input.type === 'checkbox') {
+                input.checked = savedInputs[key];
+            } else {
+                input.value = savedInputs[key];
+            }
+        }
+    }
+  container.appendChild(newEntry);
+}
+
+
+
+
+document.getElementById("saveBtn").addEventListener("click", function() {
+  localStorage.setItem('formData', JSON.stringify(saveFormInputs()));
+  localStorage.setItem('tutoringSessions', JSON.stringify(saveTutoringSessions()));
+  alert("Form Data Saved")
+});
+
+// load saved form data from local browser storage
+document.getElementById("loadBtn").addEventListener("click", function() {
+  let data = localStorage.getItem('formData')
+  let tutorData = localStorage.getItem('tutoringSessions')
+  
+  console.log(data)
+  console.log(tutorData)
+
+
+  // fill required data into the form, or alert user if there is no saved data
+  if (!data && !tutorData) {
+    alert("No saved form data found")
+    return
+  }
+  if (data) {
+    let jsonData = JSON.parse(data)
+    loadFormInputs(jsonData)
+  }
+  if (tutorData) {
+    let jsonTutorData = JSON.parse(tutorData)
+    loadTutoringSessions(jsonTutorData)
+  }
+  alert("Successfully Loaded Form Data")
+
+});
+
+document.getElementById("clearBtn").addEventListener("click", function () {
+  if (!confirm("Are you sure you want to clear your form progress?")) return;
+  localStorage.clear()
+});
+
 
 updateAsterisks();
